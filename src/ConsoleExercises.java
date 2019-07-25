@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class consoleExercises {
+public class ConsoleExercises {
     public static void main(String[] args) {
         double pi = 3.141592;
         System.out.printf("The value of pi is %napproximately %.2f.%n", pi);
