@@ -3,7 +3,7 @@ public class Bob {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Say something: ");
-        String input = scanner.next();
+        String input = scanner.nextLine();
         if (input.endsWith("?")) {
             System.out.println("Sure");
         } else if (input.endsWith("!")) {
