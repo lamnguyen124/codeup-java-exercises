@@ -48,7 +48,12 @@ public class Input {
         }
         return inputDec;
     }
-
+    public static double getDouble() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        double inputDec = scanner.nextDouble();
+        return inputDec;
+    }
 
     public static void main(String[] args) {
         getString();
@@ -56,5 +61,6 @@ public class Input {
         System.out.println(getInt(1, 10));
         System.out.println(getInt());
         System.out.println(getDouble(.01, .99));
+        System.out.println(getDouble());
 }
 }
