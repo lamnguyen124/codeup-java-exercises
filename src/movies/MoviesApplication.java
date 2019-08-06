@@ -61,7 +61,7 @@ public class MoviesApplication {
                     System.err.println("That's not right at all...");
             }
             System.out.println("Would you like to continue using the movie zone?");
-            keepGoing = input.yesNo();
+            keepGoing = input.yesNo("Would you like to see another student?");
         } while (keepGoing);
     }
 }

@@ -6,7 +6,7 @@ public class Input {
     public Input() {
         this.scanner = new Scanner(System.in);
     }
-    public static String getString() {
+    public static String getString(String s) {
         System.out.println("Enter something");
         Scanner scanner = new Scanner(System.in);
         String daString = scanner.next();
@@ -14,7 +14,7 @@ public class Input {
         return daString;
 
     }
-    public static boolean yesNo() {
+    public static boolean yesNo(String s) {
         System.out.println("Do you agree? y/n");
         Scanner scanner = new Scanner(System.in);
         String theString = scanner.next();
@@ -56,8 +56,8 @@ public class Input {
     }
 
     public static void main(String[] args) {
-        getString();
-        yesNo();
+        getString("What student would you like to see more information on?");
+        yesNo("Would you like to see another student?");
         System.out.println(getInt(1, 10));
         System.out.println(getInt());
         System.out.println(getDouble(.01, .99));
