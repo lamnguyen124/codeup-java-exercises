@@ -1,66 +1,106 @@
 package util;
+
 import java.util.Scanner;
+
 public class Input {
+
     private Scanner scanner;
 
-    public Input() {
+    public Input(){
         this.scanner = new Scanner(System.in);
     }
-    public static String getString(String s) {
-        System.out.println("Enter something");
-        Scanner scanner = new Scanner(System.in);
-        String daString = scanner.next();
-        System.out.println(daString);
-        return daString;
 
+    public String getString() {
+        return this.scanner.nextLine();
     }
-    public static boolean yesNo(String s) {
-        System.out.println("Do you agree? y/n");
-        Scanner scanner = new Scanner(System.in);
-        String theString = scanner.next();
-        boolean confirmation = theString.contains("y");
-        System.out.println(confirmation);
-        return confirmation;
+
+    public String getString(String prompt) {
+        System.out.println(prompt);
+        return this.getString();
     }
-    public static int getInt(int min, int max){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number between 1 and 10: ");
-        int inputNumber = scanner.nextInt();
-        if(inputNumber > max || inputNumber < min) {
-            inputNumber = getInt(min, max);
+
+    public boolean yesNo() {
+        String answer = this.scanner.nextLine();
+        if (answer.equalsIgnoreCase("y")
+                || answer.equalsIgnoreCase("yes")) {
+            return true;
+        } else return false;
+    }
+    public boolean yesNo(String prompt) {
+        System.out.println(prompt);
+        return this.yesNo();
+    }
+
+    public int getInt() {
+        String answer;
+        answer = this.scanner.nextLine();
+        try {
+            return Integer.valueOf(answer);
+        } catch (NumberFormatException ex) {
+            System.out.printf("%s is not an integer%n", answer);
+            return getInt();
         }
-        return inputNumber;
+    }
+    public int getInt(String prompt) {
+        System.out.println(prompt);
+        return this.getInt();
     }
 
-    public static int getInt() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int inputNumber = scanner.nextInt();
-        return  inputNumber;
+    public int getInt(int min, int max) {
+        do {
+            System.out.printf("Please enter a number between %d and %d : ", min, max);
+
+            String input = this.scanner.nextLine();
+            int answer;
+            try {
+                answer = Integer.valueOf(input);
+            } catch (NumberFormatException ex) {
+                continue;
+            }
+
+            if (answer >= min && answer <= max) {
+                return answer;
+            }
+        } while (true);
     }
 
-    public static double getDouble(double min, double max){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number between .01 and .99: ");
-        double inputDec = scanner.nextDouble();
-        if(inputDec > max || inputDec < min) {
-            inputDec = getDouble(min, max);
+    public double getDouble(double min, double max) {
+        do {
+            System.out.printf("Please enter a number between %f and %f : ", min, max);
+            String input = this.scanner.nextLine();
+
+            double answer;
+            try {
+                answer = Double.valueOf(input);
+            } catch (NumberFormatException ex) {
+                continue;
+            }
+            if (answer >= min && answer <= max) {
+                return answer;
+            }
+        } while (true);
+
+    }
+    public double getDouble() {
+        String answer;
+        answer = this.scanner.nextLine();
+        try {
+            return Double.valueOf(answer);
+        } catch (NumberFormatException ex) {
+            System.out.printf("%s is not a number%n", answer);
+            return getDouble();
         }
-        return inputDec;
     }
-    public static double getDouble() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        double inputDec = scanner.nextDouble();
-        return inputDec;
+    public double getDouble(String prompt) {
+        System.out.println(prompt);
+        return this.getDouble();
     }
 
     public static void main(String[] args) {
-        getString("What student would you like to see more information on?");
-        yesNo("Would you like to see another student?");
-        System.out.println(getInt(1, 10));
-        System.out.println(getInt());
-        System.out.println(getDouble(.01, .99));
-        System.out.println(getDouble());
-}
+        Input input = new Input();
+//        System.out.println("Enter your answer (y|n)?");
+//        System.out.println(input.yesNo());
+        System.out.println(input.getDouble());
+
+    }
 }
